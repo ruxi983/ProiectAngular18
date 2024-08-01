@@ -1,7 +1,7 @@
-.propImg{
+/* .propImg{
     height: 250px;
-    width: 250px;
-}
+    
+} */
 
 .card {
     display: inline-block;
@@ -11,8 +11,53 @@
     background-color: #fff;
 }
 
+/*
 .card img {
     display: block;
     width: 100%;
     height: auto;
+}
+   */ 
+
+.card:hover img{
+        transform: scale(1.2,1.2); /*x,y coordinates*/
+        transition-duration: 500ms;
+        transition-timing-function: ease-out; /*for zooming efect*/
+        height: 250px;
+        opacity: .7;
+    }
+
+.card img{
+        transform: scale(1,1); /*x,y coordinates*/
+        transition-duration: 500ms;
+        transition-timing-function: ease-out; /*for zooming efect*/
+        height: 250px;
+    
+}
+
+.card-img-wrapper{
+    overflow: hidden;
+    position: relative;
+}
+
+.member-icons{
+    position: absolute;
+    display: flex;
+    justify-self: center;
+    bottom: -10%;
+    left: 0;
+    right: 0;
+    margin-right: auto;
+    margin-left: auto;
+    opacity: 0;
+    justify-content:space-between;
+}
+
+.card-img-wrapper:hover .member-icons{
+    bottom: 0;
+    opacity: 1;
+}
+
+.animate{
+    transition: all 0.3s ease-in-out;
 }
