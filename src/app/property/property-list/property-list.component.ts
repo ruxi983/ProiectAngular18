@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrl: './property-list.component.css'
 })
 export class PropertyListComponent{
-
+  property_status: any="SOLD";
   properties: Array<any> = [
     {
       "Id":1,
@@ -40,7 +40,7 @@ export class PropertyListComponent{
     },
     {
       "Id":6,
-      "Name":"Pearl White House",
+      "Name":"Pearl House",
       "Type":"House",
       "Price":18000
     }
