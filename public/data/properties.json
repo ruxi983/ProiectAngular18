@@ -3,37 +3,49 @@
       "Id":1,
       "Name":"Birla House",
       "Type":"House",
-      "Price":12000
+      "Price":12000,
+      "Space":200,
+      "Image":"colorful_house.png"
     },
     {
       "Id":2,
       "Name":"Bucegi Cottage",
       "Type":"House",
-      "Price":10990
+      "Price":10990,
+      "Space":100,
+      "Image":"colorful_house.png"
     },
     {
       "Id":3,
       "Name":"Mozaceni Villa",
       "Type":"House",
-      "Price":11000
+      "Price":11000,
+      "Space":150,
+      "Image":"colorful_house.png"
     },
     {
       "Id":4,
       "Name":"Micro House",
       "Type":"House",
-      "Price":11400
+      "Price":11400,
+      "Space":300,
+      "Image":"basic_house.png"
     },
     {
       "Id":5,
       "Name":"Macro House",
       "Type":"House",
-      "Price":14300
+      "Price":14300,
+      "Space":1000,
+      "Image":"basic_house.png"
     },
     {
       "Id":6,
       "Name":"Pearl House",
       "Type":"House",
-      "Price":18000
+      "Price":18000,
+      "Space":250,
+      "Image":"basic_house.png"
     }
 
 ]
