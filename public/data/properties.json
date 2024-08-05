@@ -1,6 +1,7 @@
 [
     {
       "Id":1,
+      "SellRent":1,
       "Name":"Birla House",
       "Type":"House",
       "Price":12000,
@@ -9,6 +10,7 @@
     },
     {
       "Id":2,
+      "SellRent":1,
       "Name":"Bucegi Cottage",
       "Type":"House",
       "Price":10990,
@@ -17,6 +19,7 @@
     },
     {
       "Id":3,
+      "SellRent":2,
       "Name":"Mozaceni Villa",
       "Type":"House",
       "Price":11000,
@@ -25,6 +28,7 @@
     },
     {
       "Id":4,
+      "SellRent":2,
       "Name":"Micro House",
       "Type":"House",
       "Price":11400,
@@ -33,19 +37,21 @@
     },
     {
       "Id":5,
+      "SellRent":2,
       "Name":"Macro House",
       "Type":"House",
       "Price":14300,
-      "Space":1000,
+      "Space":100,
       "Image":"basic_house.png"
     },
     {
       "Id":6,
+      "SellRent":1,
       "Name":"Pearl House",
       "Type":"House",
       "Price":18000,
-      "Space":250,
-      "Image":"basic_house.png"
+      "Space":250
+      
     }
 
 ]
