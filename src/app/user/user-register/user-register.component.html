@@ -52,16 +52,15 @@
         <div class="form-group col-12">
           <label for="cpassword" class="form-label">Confirm Password</label>
           <input type="password" class="form-control" formControlName="confirmPassword">
-
-          <span *ngIf="!confirmPassword?.valid && confirmPassword?.touched" class="error-block">
+          <!-- 1: {{registrationForm.hasError('notmatched')}} -->
+          <span *ngIf="confirmPassword?.touched" class="error-block">
             <span *ngIf="confirmPassword.errors?.['required']">
                 Please confirm password
             </span>
-            <span *ngIf="registrationForm.hasError('notmatched') && confirmPassword.valid">
-                Passwords not matched
-            </span>
-           
           </span>
+          <span *ngIf="registrationForm.hasError('notmatched') && !confirmPassword.errors?.['required']" class="error-block">
+            Passwords not matched
+        </span>
 
         </div>
 
