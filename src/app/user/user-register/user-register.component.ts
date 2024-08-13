@@ -3,6 +3,7 @@ import { AbstractControl, FormBuilder, FormControl, FormGroup, ValidationErrors,
 import { format } from 'path';
 import { UserServiceService } from '../../services/user-service.service';
 import { User } from '../../model/user';
+import { AlertifyService } from '../../services/alertify.service';
 
 @Component({
   selector: 'app-user-register',
@@ -12,10 +13,11 @@ import { User } from '../../model/user';
 export class UserRegisterComponent implements OnInit {
 
   registrationForm: FormGroup;
-
   user: User;
   userSubmitted: boolean;
-  constructor(private fb: FormBuilder, private userService: UserServiceService) { }
+  constructor(private fb: FormBuilder,
+              private userService: UserServiceService,
+              private alertify: AlertifyService ) { }
 
   ngOnInit() {
       // this.registrationForm=new FormGroup({
@@ -93,12 +95,17 @@ export class UserRegisterComponent implements OnInit {
 
   onSubmit(){
     console.log(this.registrationForm);
+    if(this.registrationForm.valid){
+      this.alertify.success("Congrats, you are registered");}
     this.userSubmitted = true;
     if(this.registrationForm.valid){   
      // this.user = Object.assign(this.user, this.registrationForm.value);
       this.userService.addUser(this.userData());
       this.registrationForm.reset();
       this.userSubmitted = false;
+      this.alertify.success("Congrats, you are registered");
+    } else {
+      this.alertify.error("Kindly provide valid data for the required fields");
     }
     
   }

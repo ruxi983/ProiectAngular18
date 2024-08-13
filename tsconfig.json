@@ -20,6 +20,10 @@
     "target": "ES2022",
     "module": "ES2022",
    // "noPropertyAccessFromIndexSignature": false,
+    "typeRoots": [
+      "node_modules/@types",
+      "src/alertyfytype.d.ts"
+    ],
     "lib": [
       "ES2022",
       "dom"
