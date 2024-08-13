@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { AbstractControl, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { format } from 'path';
+import { UserServiceService } from '../../services/user-service.service';
+import { User } from '../../model/user';
 
 @Component({
   selector: 'app-user-register',
@@ -9,26 +11,41 @@ import { format } from 'path';
 })
 export class UserRegisterComponent implements OnInit {
 
-registrationForm: FormGroup;
+  registrationForm: FormGroup;
 
-  constructor() { }
+  user: User;
+  userSubmitted: boolean;
+  constructor(private fb: FormBuilder, private userService: UserServiceService) { }
 
   ngOnInit() {
-      this.registrationForm=new FormGroup({
-        userName: new FormControl(null,Validators.required),
-        email: new FormControl(null,[Validators.required,Validators.email]),
-        password: new FormControl(null,[Validators.required, Validators.minLength(8)]),
-        confirmPassword: new FormControl(null,[Validators.required]),
-        mobile: new FormControl(null,[Validators.required, Validators.maxLength(10)])
-      }, this.passwordMatchingValidator);
+      // this.registrationForm=new FormGroup({
+      //   userName: new FormControl(null,Validators.required),
+      //   email: new FormControl(null,[Validators.required,Validators.email]),
+      //   password: new FormControl(null,[Validators.required, Validators.minLength(8)]),
+      //   confirmPassword: new FormControl(null,[Validators.required]),
+      //   mobile: new FormControl(null,[Validators.required, Validators.maxLength(10)])
+      // }, this.passwordMatchingValidator);
 
-          this.registrationForm.controls['userName'].setValue('e.g: McConor John'),
-          this.registrationForm.controls['mobile'].setValue('e.g: 0712345678'),
-          this.registrationForm.controls['email'].setValue('e.g: mcconorjohn@business.uk')
+        this.createRegistrationForm();
+
+          // entering default values
+          // this.registrationForm.controls['userName'].setValue('e.g: McConor John'),
+          // this.registrationForm.controls['mobile'].setValue('e.g: 0712345678'),
+          // this.registrationForm.controls['email'].setValue('e.g: mcconorjohn@business.uk')
 
     }
 
-      passwordMatchingValidator(fc: AbstractControl): ValidationErrors | null{
+    createRegistrationForm(){
+        this.registrationForm = this.fb.group({
+            userName: [null, Validators.required],
+            email: [null, [Validators.required, Validators.email]],
+            password: [null,[Validators.required,Validators.minLength(8)]],
+            confirmPassword: [null, Validators.required],
+            mobile: [null, [Validators.required, Validators.maxLength(10)]]
+        },{validators: this.passwordMatchingValidator});
+    }
+
+    passwordMatchingValidator(fc: AbstractControl): ValidationErrors | null{
         return fc.get('password')?.value === fc.get('confirmPassword')?.value ? null:
         {notmatched: true};
         console.log(this.registrationForm);
@@ -42,6 +59,14 @@ registrationForm: FormGroup;
     //     : { notmatched: true };
     // };
 
+    userData(): User{
+      return this.user = {
+        userName: this.userName.value,
+        email: this.email.value,
+        password: this.password.value,
+        mobile: this.mobile.value
+      }
+    }
 
     //getter method for all form controls
     get userName(){
@@ -68,7 +93,29 @@ registrationForm: FormGroup;
 
   onSubmit(){
     console.log(this.registrationForm);
+    this.userSubmitted = true;
+    if(this.registrationForm.valid){   
+     // this.user = Object.assign(this.user, this.registrationForm.value);
+      this.userService.addUser(this.userData());
+      this.registrationForm.reset();
+      this.userSubmitted = false;
+    }
+    
   }
+
+  addUser(user: User){
+    let users = [];
+    if(localStorage.getItem('Users')){
+      users = JSON.parse(localStorage.getItem('Users')||'{}');
+      users = [user, ...users];
+      console.log(users);
+    } else
+    {
+      users = [user]; //swap with users = [user, ...users] to put the element at the end of rthe array;
+    }
+    localStorage.setItem('Users', JSON.stringify(users));
+
+}
 
 
 }
