@@ -3,6 +3,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { TabsetComponent } from 'ngx-bootstrap/tabs';
+import { IProperty } from '../IProperty.interface';
 
 @Component({
   selector: 'app-add-property',
@@ -22,7 +23,14 @@ export class AddPropertyComponent implements OnInit {
   gatedTypes: Array<string> = ['Yes','No'];
   moveTypes: Array<string> = ['East','West', 'North','South'];
 
-  propertyView = {};
+  propertyView : IProperty = {
+    Id: 0,
+    SellRent: 0,
+    Name: '',
+    Type: '',
+    Price: 0,
+    Space: 0
+  };
   
   constructor(private router: Router) { }
 

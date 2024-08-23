@@ -3,7 +3,7 @@
             <img *ngIf="property.Image" class="card-img-top"  alt="image" src="/assets/images/{{property.Image}}">
             <img *ngIf="!property.Image" class="card-img-top"  alt="image" src="/assets/images/basic_house.png">
 
-             <ul class="list-inline text-center member-icons animate">
+             <ul *ngIf="!hideIcons" class="list-inline text-center member-icons animate">
             
                 <li class="list-inline-item">             
                     <button class="btn btn-primary" routerLink="/property-detail/{{property.Id}}"><i class="fa-regular fa-pen-to-square"></i></button>
@@ -22,7 +22,7 @@
                 <h1>{{property.Name}}</h1>
                 <h2>{{property.Type}}</h2>
                 <h3>😸{{property.Price}}</h3>
-                <h4>Spatiu in metri patrati:{{property.Space}}</h4>
+                <!-- <h4>Spatiu in metri patrati:{{property.Space}}</h4> -->
                 <h5>{{property_status}}</h5>
         </div>
 </div>

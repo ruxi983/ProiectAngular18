@@ -18,6 +18,8 @@ constructor() {
 }
 
 @Input() property : IProperty;
+@Input() hideIcons: boolean;
+
 @Input() property_status : any;
 
 ngOnInit(): void {}

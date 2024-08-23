@@ -3,6 +3,11 @@
     
 } */
 
+
+.card {
+    min-height: 400px;
+}
+
 .card {
     display: inline-block;
     position: relative;
